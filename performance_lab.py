@@ -7,8 +7,18 @@
 # Output: 3
 
 def most_frequent(numbers):
-    # Your code here
-    pass
+    freq = {}
+
+    for num in numbers:
+        freq[num] = freq.get(num, 0) + 1
+
+    return max(freq, key=freq.get)
+
+
+# Test cases
+print(most_frequent([1, 3, 2, 3, 4, 1, 3]))
+print(most_frequent([5]))
+print(most_frequent([2, 2, 1, 1]))
 
 """
 Time and Space Analysis for problem 1:
@@ -29,8 +39,21 @@ Time and Space Analysis for problem 1:
 # Output: [4, 5, 6, 7]
 
 def remove_duplicates(nums):
-    # Your code here
-    pass
+    seen = set()
+    result = []
+
+    for num in nums:
+        if num not in seen:
+            seen.add(num)
+            result.append(num)
+
+    return result
+
+
+# Test cases
+print(remove_duplicates([4, 5, 4, 6, 5, 7]))
+print(remove_duplicates([]))
+print(remove_duplicates([1, 1, 1]))
 
 """
 Time and Space Analysis for problem 2:
@@ -52,8 +75,23 @@ Time and Space Analysis for problem 2:
 # Output: [(1, 4), (2, 3)]
 
 def find_pairs(nums, target):
-    # Your code here
-    pass
+    seen = set()
+    pairs = []
+
+    for num in nums:
+        complement = target - num
+        if complement in seen:
+            pairs.append((complement, num))
+        seen.add(num)
+
+    return pairs
+
+
+# Test cases
+print(find_pairs([1, 2, 3, 4], 5))
+print(find_pairs([], 5))
+print(find_pairs([2, 4, 6], 10))
+
 
 """
 Time and Space Analysis for problem 3:
@@ -75,8 +113,25 @@ Time and Space Analysis for problem 3:
 # add_n_items(6) → should print when resizing happens.
 
 def add_n_items(n):
-    # Your code here
-    pass
+    capacity = 2
+    size = 0
+    arr = [None] * capacity
+
+    for i in range(n):
+        if size == capacity:
+            print(f"Resizing from {capacity} to {capacity * 2}")
+            new_arr = [None] * (capacity * 2)
+            for j in range(size):
+                new_arr[j] = arr[j]
+            arr = new_arr
+            capacity *= 2
+
+        arr[size] = i
+        size += 1
+
+
+# Test case
+add_n_items(6)
 
 """
 Time and Space Analysis for problem 4:
@@ -98,8 +153,20 @@ Time and Space Analysis for problem 4:
 # Because: [1, 1+2, 1+2+3, 1+2+3+4]
 
 def running_total(nums):
-    # Your code here
-    pass
+    result = []
+    current_sum = 0
+
+    for num in nums:
+        current_sum += num
+        result.append(current_sum)
+
+    return result
+
+
+# Test cases
+print(running_total([1, 2, 3, 4]))
+print(running_total([]))
+print(running_total([5]))
 
 """
 Time and Space Analysis for problem 5:
